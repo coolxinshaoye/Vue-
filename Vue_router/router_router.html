@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='../js/vue.js'></script>
+    <script src="../js/router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/aa/1">com1</router-link>
+        <router-link to="/aa/2">com2</router-link>
+        <router-link to="/aa/3">com3</router-link>
+        <router-view></router-view>
+    </div>
+    <script type="text/javascript">
+        var com1 = {
+            template:`
+            <h1>hello 组件{{$route.params.id}}</h1>`
+        }
+        var com2 = {
+            template:`
+            <h1>hello 组件{{$route.params.id}}</h1>`
+        }
+        const router = new VueRouter({
+            routes: [
+            {path:'/', redirect: '/aa/1'},
+                {path:'/aa/:id', component:com1},
+                {path:'/bb', component:com2}
+            ]
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+               
+            },
+            router
+        });
+        
+    </script>
+</body>
+
+</html>

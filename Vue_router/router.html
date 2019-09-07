@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='../js/vue.js'></script>
+    <script src="../js/router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/aa">com1</router-link>
+        <router-link to="/bb">com2</router-link>
+        <router-view></router-view>
+    </div>
+    <script type="text/javascript">
+        var com1 = {
+            template:`
+            <h1>hello luyou
+                <div>
+                    <router-link to="/aa/cc">hub1</router-link>
+                    <router-link to="/aa/dd">hub2</router-link>
+                </div>       
+            </h1>`
+        }
+        var com2 = {
+            template:`
+            <h1>hello luyou 666</h1>`
+        } 
+        var hub1 = {
+            template:`
+            <h1>hello 刁民</h1>`
+        } 
+        var hub2 = {
+            template:`
+            <h1>总有bug想害朕</h1>`
+        }
+        const router = new VueRouter({
+            routes: [
+            {path:'/', redirect: '/bb'},
+                {path:'/aa', component:com1 , children:[
+                {path:'/aa/cc', component:hub1},
+                {path:'/aa/dd', component:hub2}
+                ]},
+                {path:'/bb', component:com2}
+            ]
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+               
+            },
+            router
+        });
+        
+    </script>
+</body>
+
+</html>
